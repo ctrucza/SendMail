@@ -1,33 +1,31 @@
 ﻿using System;
+using System.Configuration;
 
 namespace SendMail
 {
     class Program
     {
+        private static string errorMailSubjectPrefix;
+
         static void Main(string[] args)
         {
+            errorMailSubjectPrefix = ConfigurationManager.AppSettings["ErrorMailSubjectPrefix"];
+
             try
             {
                 DoStuff();
             }
             catch (Exception e)
             {
-                // Use System.Net.Mail to send an email:
-                // 
-                // From: service@company.com
-                // To: admin@company.com
-                // Subject: [SERVICE] Service failed: <root cause for error>
-                // Body:
-                //  Error messages:
-                //      <root cause for error>
-                //      <one level up>
-                //      ...
-                //
-                //  Stack trace:
-                //  <outermost stack trace>
-                //  <next stack trace>
-                //  ...
-                //  <stack trace for root cause>
+                string message = string.Format(
+                    "{0} Service stopped: {1}",
+                    errorMailSubjectPrefix,
+                    e.Message
+                    );
+
+                EmailServerLocator.EmailServer = new EmailServer();
+                ErrorNotification errorNotification = new ErrorNotification("Grips import", message, e);
+                errorNotification.Send();
             }
         }
 
