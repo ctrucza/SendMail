@@ -1,33 +1,26 @@
 ﻿using System;
+using System.Configuration;
+using System.Net.Mail;
 
 namespace SendMail
 {
     class Program
     {
+        private static string errorMailSubject;
+
         static void Main(string[] args)
         {
+            errorMailSubject = ConfigurationManager.AppSettings["ErrorMailSubject"];
             try
             {
                 DoStuff();
             }
-            catch (Exception e)
+            catch (Exception cause)
             {
-                // Use System.Net.Mail to send an email:
-                // 
-                // From: service@company.com
-                // To: admin@company.com
-                // Subject: [SERVICE] Service failed: <root cause for error>
-                // Body:
-                //  Error messages:
-                //      <root cause for error>
-                //      <one level up>
-                //      ...
-                //
-                //  Stack trace:
-                //  <outermost stack trace>
-                //  <next stack trace>
-                //  ...
-                //  <stack trace for root cause>
+                ErrorNotification errorNotification = new ErrorNotification(errorMailSubject, cause);
+                MailMessage mailMessage = errorNotification.GetMailMessage();
+                EmailServer emailServer = new EmailServer();
+                emailServer.SendMail(mailMessage);
             }
         }
 
