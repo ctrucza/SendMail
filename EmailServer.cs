@@ -16,7 +16,7 @@ namespace SendMail
             }
         }
 
-        public MailMessage CreateMailMessage(ErrorNotification errorNotification)
+        private MailMessage CreateMailMessage(ErrorNotification errorNotification)
         {
             MailMessage message = new MailMessage();
             string to = ConfigurationManager.AppSettings["ErrorNotificationsReceivers"];
