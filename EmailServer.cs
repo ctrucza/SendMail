@@ -27,7 +27,7 @@ namespace SendMail
             message.Subject = errorNotification.Title.Replace(Environment.NewLine, " ");
             message.SubjectEncoding = Encoding.UTF8;
 
-            message.Body = errorNotification.Summary + Environment.NewLine + errorNotification.StackTrace;
+            message.Body = errorNotification.Summary + Environment.NewLine + errorNotification.Content;
             message.BodyEncoding = Encoding.UTF8;
 
             message.Priority = MailPriority.High;

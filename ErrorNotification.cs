@@ -8,7 +8,7 @@ namespace SendMail
     {
         public readonly string Title;
         public readonly string Summary;
-        public readonly string StackTrace;
+        public readonly string Content;
 
         private readonly List<Exception> exceptions = new List<Exception>();
 
@@ -23,7 +23,7 @@ namespace SendMail
             Summary = 
                 "Error messages: " + Environment.NewLine + 
                 GetErrorMessages() + Environment.NewLine;
-            StackTrace = 
+            Content = 
                 "Stack trace: " + Environment.NewLine +
                 GetStackTrace();
         }
