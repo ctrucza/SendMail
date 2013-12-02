@@ -17,22 +17,22 @@ namespace SendMail
         [TestMethod]
         public void SimpleExceptionMessageInSubject()
         {
-            ErrorNotification notification = new ErrorNotification("test", new Exception("some exception"));
-            Assert.AreEqual("test(some exception)", notification.GetMailMessage().Subject);
+            ErrorNotification errorNotification = new ErrorNotification("test", new Exception("some exception"));
+            Assert.AreEqual("test(some exception)", errorNotification.CreateMailMessage().Subject);
         }
 
         [TestMethod]
         public void InnermostExceptionInSubject()
         {
-            ErrorNotification notification = new ErrorNotification("test", complexException);
-            Assert.AreEqual("test(Innermost)", notification.GetMailMessage().Subject);
+            ErrorNotification errorNotification = new ErrorNotification("test", complexException);
+            Assert.AreEqual("test(Innermost)", errorNotification.CreateMailMessage().Subject);
         }
 
         [TestMethod]
         public void ExceptionMessagesInBody()
         {
-            ErrorNotification notification = new ErrorNotification("test", complexException);
-            string body = notification.GetMailMessage().Body;
+            ErrorNotification errorNotification = new ErrorNotification("test", complexException);
+            string body = errorNotification.CreateMailMessage().Body;
             StringAssert.Contains(body, "Outmost");
             StringAssert.Contains(body, "MiddleOne");
             StringAssert.Contains(body, "Innermost");
@@ -41,8 +41,8 @@ namespace SendMail
         [TestMethod]
         public void ErrorMessagesInReverseOrderInBody()
         {
-            ErrorNotification notification = new ErrorNotification("test", complexException);
-            string body = notification.GetMailMessage().Body;
+            ErrorNotification errorNotification = new ErrorNotification("test", complexException);
+            string body = errorNotification.CreateMailMessage().Body;
             Assert.IsTrue(body.IndexOf("Innermost") < body.IndexOf("MiddleOne"));
             Assert.IsTrue(body.IndexOf("MiddleOne") < body.IndexOf("Outmost"));
         }

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Configuration;
-using System.Net.Mail;
 
 namespace SendMail
 {
@@ -18,9 +17,8 @@ namespace SendMail
             catch (Exception cause)
             {
                 ErrorNotification errorNotification = new ErrorNotification(errorMailSubject, cause);
-                MailMessage mailMessage = errorNotification.GetMailMessage();
                 EmailServer emailServer = new EmailServer();
-                emailServer.SendMail(mailMessage);
+                emailServer.Send(errorNotification);
             }
         }
 
