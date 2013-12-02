@@ -1,28 +1,40 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="SendMail.EmailServer">
-    <Position X="11" Y="0.5" Width="1.75" />
+    <Position X="3.5" Y="3.5" Width="1.75" />
+    <Members>
+      <Method Name="CreateMailMessage" Hidden="true" />
+    </Members>
     <TypeIdentifier>
-      <HashCode>AAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAACAAAA=</HashCode>
       <FileName>EmailServer.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SendMail.ErrorNotification">
-    <Position X="11" Y="1.75" Width="1.75" />
+    <Position X="3.5" Y="0.5" Width="1.75" />
+    <Members>
+      <Method Name="CollectExceptions" Hidden="true" />
+      <Field Name="exceptions" Hidden="true" />
+      <Method Name="GetErrorMessages" Hidden="true" />
+      <Method Name="GetStackTrace" Hidden="true" />
+    </Members>
     <TypeIdentifier>
-      <HashCode>CAAAAAAAAAgAAAAAAAAAAgCAgQAAAAEAAAAAAAAAAAA=</HashCode>
+      <HashCode>CACAAAAAAggAAEAAAAAAAAAAgAAAAAEAAAAAAAAAAAA=</HashCode>
       <FileName>ErrorNotification.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SendMail.ErrorNotificationTests">
-    <Position X="13.5" Y="1.75" Width="2.75" />
+    <Position X="6.5" Y="0.75" Width="3" />
+    <Members>
+      <Field Name="complexException" Hidden="true" />
+    </Members>
     <TypeIdentifier>
-      <HashCode>AAAAAAEAAAAAAAAIAAAIAAAAAGAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAgAAAAAAACAAAEAIAEAAAAAAAAAAAAA=</HashCode>
       <FileName>ErrorNotificationTests.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SendMail.Program">
-    <Position X="8.75" Y="0.5" Width="1.75" />
+    <Position X="1" Y="1" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAACAABAAAAAAAAAAAAABAAAAAA=</HashCode>
       <FileName>Program.cs</FileName>
