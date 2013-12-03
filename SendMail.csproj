@@ -46,8 +46,10 @@
     <Compile Include="EmailServer.cs" />
     <Compile Include="ErrorNotification.cs" />
     <Compile Include="ErrorNotificationTests.cs" />
+    <Compile Include="Notification.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Report.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

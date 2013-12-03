@@ -5,11 +5,10 @@ namespace SendMail
 {
     class Program
     {
-        private static string errorMailSubject;
-
         static void Main(string[] args)
         {
-            errorMailSubject = ConfigurationManager.AppSettings["ErrorMailSubject"];
+            string errorMailSubject = ConfigurationManager.AppSettings["ErrorMailSubject"];
+            string reportMailSubject = ConfigurationManager.AppSettings["ReportMailSubject"]; ;
             try
             {
                 DoStuff();
@@ -19,6 +18,12 @@ namespace SendMail
                 ErrorNotification errorNotification = new ErrorNotification(errorMailSubject, cause);
                 EmailServer emailServer = new EmailServer();
                 emailServer.Send(errorNotification);
+            }
+            finally
+            {
+                Report report = new Report(reportMailSubject);
+                EmailServer emailServer = new EmailServer();
+                emailServer.Send(report);
             }
         }
 

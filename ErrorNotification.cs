@@ -4,30 +4,42 @@ using System.Linq;
 
 namespace SendMail
 {
-    public class ErrorNotification
+    public class ErrorNotification : Notification
     {
-        public readonly string Title;
-        public readonly string Summary;
-        public readonly string Content;
-
         private readonly List<Exception> exceptions = new List<Exception>();
+        private readonly string message;
 
         public ErrorNotification(string message, Exception exception)
         {
             if (exception == null)
                 throw new ArgumentNullException("exception");
 
+            this.message = message;
             CollectExceptions(exception);
-
-            Title = message + "(" + exceptions.Last().Message + ")";
-            Summary = 
-                "Error messages: " + Environment.NewLine + 
-                GetErrorMessages() + Environment.NewLine;
-            Content = 
-                "Stack trace: " + Environment.NewLine +
-                GetStackTrace();
         }
 
+        public override string Title
+        {
+            get { return message + "(" + exceptions.Last().Message + ")"; }
+        }
+
+        public override string Summary
+        {
+            get
+            {
+                return "Error messages: " + Environment.NewLine +
+                    GetErrorMessages() + Environment.NewLine;
+            }
+        }
+
+        public override string Content
+        {
+            get
+            {
+                return "Stack trace: " + Environment.NewLine +
+                    GetStackTrace();
+            }
+        }
 
         private void CollectExceptions(Exception exception)
         {
